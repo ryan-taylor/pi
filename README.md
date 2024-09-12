@@ -3,11 +3,11 @@
 This repository contains a collection of useful scripts I've created for Raspberry Pi 5. These tools are designed to enhance the functionality and ease of use.
 
 ## Table of Contents
-
 1. [Display Control Script](#display-control-script)
-2. [Installation](#installation)
-3. [Usage](#usage)
-4. [License](#license)
+2. [Kbye - Raspberry Pi Shutdown Tool](#kbye---raspberry-pi-shutdown-tool)
+3. [Installation](#installation)
+4. [Usage](#usage)
+5. [License](#license)
 
 ## Display Control Script
 
@@ -108,6 +108,61 @@ If you need to modify the script, remember to reload the systemd daemon after ch
 sudo systemctl daemon-reload
 sudo systemctl restart display-on.service
 ```
+
+## Kbye - Raspberry Pi Shutdown Tool
+
+The Kbye tool provides a simple way to safely shut down a Raspberry Pi using a custom 'kbye' command. This tool is especially useful for headless setups or when you want to initiate a shutdown remotely.
+
+### Components
+1. `shutdown_script.py`: The main Python script that monitors for a shutdown flag.
+2. `shutdown_script.service`: A systemd service file to run the script as a background service.
+3. `kbye`: A bash script that triggers the shutdown process.
+
+### Setup
+1. Navigate to the Kbye directory:
+   ```
+   cd pi/tools/kbye
+   ```
+2. Copy the files to their respective locations:
+   ```
+   sudo cp shutdown_script.py /home/rt/
+   sudo cp shutdown_script.service /etc/systemd/system/
+   sudo cp kbye /usr/local/bin/
+   ```
+3. Make the kbye script executable:
+   ```
+   sudo chmod +x /usr/local/bin/kbye
+   ```
+4. Enable and start the service:
+   ```
+   sudo systemctl daemon-reload
+   sudo systemctl enable shutdown_script.service
+   sudo systemctl start shutdown_script.service
+   ```
+
+### Usage
+To shut down the Raspberry Pi, simply type `kbye` in the terminal from any directory.
+
+### Troubleshooting
+If issues occur, check the log file at `/home/rt/shutdown_log.txt` for any error messages or unexpected behavior.
+
+## Installation
+
+To install all tools in this repository:
+
+1. Clone the repository:
+   ```
+   git clone https://github.com/ryan-taylor/pi.git
+   ```
+2. Navigate to the tools directory:
+   ```
+   cd pi/tools
+   ```
+3. Make all scripts executable:
+   ```
+   chmod +x *.sh
+   ```
+4. Follow the specific setup instructions for each tool as described in their respective sections.
 
 ## Installation
 
