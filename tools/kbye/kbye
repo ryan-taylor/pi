@@ -1,0 +1,5 @@
+cat << 'EOF' > kbye
+#!/bin/bash
+echo "kbye" > /home/rt/shutdown_flag.txt
+echo "Shutdown initiated. The system will shut down shortly."
+EOF

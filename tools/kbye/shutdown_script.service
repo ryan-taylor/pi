@@ -1,0 +1,14 @@
+cat << 'EOF' > shutdown_script.service
+[Unit]
+Description=Shutdown Script Service
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python3 /home/rt/shutdown_script.py
+Restart=always
+User=root
+WorkingDirectory=/home/rt
+
+[Install]
+WantedBy=multi-user.target
+EOF
