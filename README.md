@@ -125,7 +125,7 @@ The Kbye tool provides a simple way to safely shut down a Raspberry Pi using a c
    ```
 2. Copy the files to their respective locations:
    ```
-   sudo cp shutdown_script.py /home/rt/
+   sudo cp shutdown_script.py /home/$USER/
    sudo cp shutdown_script.service /etc/systemd/system/
    sudo cp kbye /usr/local/bin/
    ```
@@ -144,7 +144,7 @@ The Kbye tool provides a simple way to safely shut down a Raspberry Pi using a c
 To shut down the Raspberry Pi, simply type `kbye` in the terminal from any directory.
 
 ### Troubleshooting
-If issues occur, check the log file at `/home/rt/shutdown_log.txt` for any error messages or unexpected behavior.
+If issues occur, check the log file at `/home/$USER/shutdown_log.txt` for any error messages or unexpected behavior.
 
 ## Installation
 
